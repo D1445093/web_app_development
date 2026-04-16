@@ -1,1 +1,168 @@
-/* app/static/css/style.css — 全域樣式（暫時留空，待步驟四實作模板時填入） */
+/* app/static/css/style.css — 全域樣式與覆寫 Bootstrap */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #0f172a; /* Slate 900 */
+    color: #f8fafc; /* Slate 50 */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* NAVBAR */
+.navbar {
+    background: rgba(30, 41, 59, 0.7) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #334155;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* CARDS */
+.card {
+    background-color: #1e293b; /* Slate 800 */
+    border: 1px solid #334155;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.bg-card-pill {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+}
+
+.border-dashed {
+    border: 2px dashed #334155 !important;
+}
+
+/* INPUTS */
+.form-control {
+    border-radius: 10px;
+    color: #f8fafc !important;
+    transition: all 0.2s;
+}
+
+.form-control:focus {
+    background-color: #0f172a !important;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+/* PILLS NAVIGATION */
+.custom-pills .nav-link {
+    color: #94a3b8;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.custom-pills .nav-link:hover {
+    background-color: #334155;
+    color: #f8fafc;
+}
+
+.custom-pills .nav-link.active {
+    background-color: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+/* LIST GROUP & TASKS */
+.list-group {
+    background-color: transparent;
+    border: 1px solid #334155;
+}
+
+.list-group-item {
+    background-color: #1e293b;
+    border-color: #334155 !important;
+    color: #f8fafc;
+    transition: all 0.25s ease-in-out;
+}
+
+.list-group-item:hover {
+    background-color: #283548;
+}
+
+.task-item {
+    animation: fadeIn 0.4s ease-out;
+    transform-origin: top;
+}
+
+/* 狀態切換動畫 */
+.task-done {
+    text-decoration: line-through;
+    color: #64748b;
+    transition: color 0.3s ease;
+}
+
+.task-done-bg {
+    background-color: #1a2333;
+}
+
+/* CHECKBOX & ACTION BUTTONS */
+.link-status {
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.link-status:hover {
+    transform: scale(1.1);
+}
+
+.display-hover-toggle {
+    transition: all 0.2s ease;
+}
+
+button.link-status:hover .text-muted {
+    color: #3b82f6 !important;
+}
+
+.action-btn {
+    border-radius: 8px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.list-group-item:hover .action-btn {
+    opacity: 1;
+}
+
+.action-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444 !important;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
