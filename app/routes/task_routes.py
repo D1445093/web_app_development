@@ -40,7 +40,14 @@ def index():
     Returns:
         render_template('index.html', ...)
     """
-    pass
+    filter_val = request.args.get('filter', 'all')
+    if filter_val not in ['all', 'pending', 'done']:
+        filter_val = 'all'
+    
+    tasks = get_all_tasks(filter_val)
+    counts = get_task_counts()
+    
+    return render_template('index.html', tasks=tasks, counts=counts, filter=filter_val)
 
 
 # ──────────────────────────────────────────────
@@ -64,7 +71,15 @@ def add_task():
     Returns:
         redirect(...)
     """
-    pass
+    title = request.form.get('title', '')
+    try:
+        if not title.strip():
+            raise ValueError("請輸入任務名稱！")
+        create_task(title)
+    except ValueError as e:
+        flash(str(e))
+    
+    return redirect(url_for('task.index'))
 
 
 # ──────────────────────────────────────────────
@@ -88,7 +103,11 @@ def toggle_task_route(task_id):
     Returns:
         redirect(...)
     """
-    pass
+    success = toggle_task(task_id)
+    if not success:
+        abort(404)
+        
+    return redirect(url_for('task.index'))
 
 
 # ──────────────────────────────────────────────
@@ -112,4 +131,8 @@ def delete_task_route(task_id):
     Returns:
         redirect(...)
     """
-    pass
+    success = delete_task(task_id)
+    if not success:
+        abort(404)
+        
+    return redirect(url_for('task.index'))
